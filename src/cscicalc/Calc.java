@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 public class Calc implements ActionListener{
 	private JTextField eqnbox = new JTextField(15);
-	private JButton one = new JButton("1");
+	private String buttonNames[] = {"1","2","3","4","5","6","7","8","9","0","C","←","=","+","-","*","/","xʸ",".","±","sin","cos","tan","log","√"};
+	private JButton buttons[] = new JButton[25];
+/*	private JButton one = new JButton("1");
 	private JButton two = new JButton("2");
 	private JButton three = new JButton("3");
 	private JButton four = new JButton("4");
@@ -21,22 +23,22 @@ public class Calc implements ActionListener{
 	private JButton nine = new JButton("9");
 	private JButton zero = new JButton("0");
 	private JButton clear = new JButton("C");
-	private JButton backspace = new JButton("←");
+	private JButton backspace = new JButton(");
 	private JButton equal = new JButton("=");
 	private JButton plus = new JButton("+");
 	private JButton minus = new JButton("-");
 	private JButton multiply = new JButton("*");
 	private JButton divide = new JButton("/");
-	private JButton pow = new JButton("xʸ");
+	private JButton pow = new JButton("");
 	private JButton decimal = new JButton(".");
-	private JButton neg = new JButton("±");
+	private JButton neg = new JButton("");
 	private JButton sin = new JButton("sin");
 	private JButton cos = new JButton("cos");
 	private JButton tan = new JButton("tan");
 	private JButton log = new JButton("log");
-	private JButton sqrt = new JButton("sqrt");
+	private JButton sqrt = new JButton("sqrt"); */
 	private JPanel mainpanel = new JPanel(new BorderLayout());
-	private JPanel buttons = new JPanel(new GridLayout(5,5));
+	private JPanel buttonspanel = new JPanel(new GridLayout(5,5));
 	private JFrame frame = new JFrame("Calculator");
 	private Font TNR = new Font("Times New Roman", Font.PLAIN, 60);
 	private String operand1 = "";
@@ -54,11 +56,16 @@ public class Calc implements ActionListener{
 	   
 	public Calc()
 	{
+		for(JButton JB: buttons)
+		{
+			for(String BN: buttonNames)
+				JB = new JButton(BN);
+		}
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    addActionListeners();
 	    frame.add(mainpanel);
 	    mainpanel.add(eqnbox , BorderLayout.NORTH);
-	    mainpanel.add(buttons, BorderLayout.CENTER);
+	    mainpanel.add(buttonspanel, BorderLayout.CENTER);
 	    addElements();
 	    //frame.setResizable(false);
 	    frame.setSize(600, 600);
@@ -70,7 +77,9 @@ public class Calc implements ActionListener{
 	}
 	public void addElements()
 	{
-		buttons.add(backspace);
+		for(JButton JB: buttons)
+			buttonspanel.add(JB);
+/*		buttons.add(backspace);
 	    buttons.add(clear);
 	    buttons.add(pow);
 	    buttons.add(plus);
@@ -94,7 +103,7 @@ public class Calc implements ActionListener{
 	    buttons.add(zero);
 	    buttons.add(neg);
 	    buttons.add(equal);
-	    buttons.add(log);
+	    buttons.add(log); */
 	}
 	public void addActionListeners()
 	{
@@ -565,7 +574,9 @@ public class Calc implements ActionListener{
 	}
 	public void divZeroForceClear()
 	{
-		one.setEnabled(false);
+		for(JButton JB: buttons)
+			JB.setEnabled(false);
+		/*one.setEnabled(false);
 		two.setEnabled(false);
 		three.setEnabled(false);
 		four.setEnabled(false);
@@ -583,10 +594,11 @@ public class Calc implements ActionListener{
 		sin.setEnabled(false);
 		cos.setEnabled(false);
 		tan.setEnabled(false);
-		log.setEnabled(false);
+		log.setEnabled(false);*/
 	}
 	public static void main(String args[])
 	{
 		Calc Calculator = new Calc();
+		
 	}
 }
